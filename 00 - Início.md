@@ -22,6 +22,7 @@ Conhecimento importado do **Hermes** (memórias + skills).
 - [[Memórias/SupoClip - Video Clipping IA|SupoClip - Video Clipping IA]]
 - [[Memórias/Git-Obsidian-Sync|Git Obsidian Sync]]
 - [[Memórias/Arquitetura-Cerebro-Obsidian|Arquitetura Cérebro Obsidian]]
+- [[Memórias/Integracao-Antigravity-Obsidian|Integração Antigravity]]
 
 ## 🛠️ Skills
 
@@ -171,9 +172,11 @@ Conhecimento importado do **Hermes** (memórias + skills).
 - [[Memórias/Configurações Técnicas/SupoClip-Integracao-ZapSender|SupoClip → ZapSender Video Clipping]]
 - [[Memórias/Git-Obsidian-Sync|Git Obsidian Sync]]
 - [[Memórias/Arquitetura-Cerebro-Obsidian|Arquitetura Cérebro Obsidian]]
+- [[Memórias/Integracao-Antigravity-Obsidian|Integração Antigravity]]
 
 ## 📋 Protocolos
 - [[00 - Protocolos/Handoff-Entre-Agentes|Handoff Entre Agentes]]
 - [[00 - Protocolos/INSTRUCAO-GLOBAL-AGENTES|Instrução Global Agentes]]
 - [[00 - Protocolos/Status-Projeto-Memoria-Compartilhada|Status do Projeto]]
 - [[00 - Protocolos/Comportamento-Automatico-Memoria|Comportamento Automático Memória]]
+- [[00 - Protocolos/Checklist-Hermes-Cerebro-Obsidian|Checklist Cérebro Obsidian]]
