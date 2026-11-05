@@ -20,6 +20,7 @@ Conhecimento importado do **Hermes** (memórias + skills).
 - [[Memórias/Evolution Go - WhatsApp API|Evolution Go - WhatsApp API]]
 - [[Memórias/Traefik e Docker Swarm|Traefik e Docker Swarm]]
 - [[Memórias/SupoClip - Video Clipping IA|SupoClip - Video Clipping IA]]
+- [[Memórias/Git-Obsidian-Sync|Git Obsidian Sync]]
 
 ## 🛠️ Skills
 
@@ -167,6 +168,7 @@ Conhecimento importado do **Hermes** (memórias + skills).
 - [[Memórias/Configurações Técnicas/Portainer-srv-app4|Portainer srv-app4]]
 - [[Memórias/Configurações Técnicas/REA-Reverse-Engineering|REA Reverse Engineering]]
 - [[Memórias/Configurações Técnicas/SupoClip-Integracao-ZapSender|SupoClip → ZapSender Video Clipping]]
+- [[Memórias/Git-Obsidian-Sync|Git Obsidian Sync]]
 
 ## 📋 Protocolos
 - [[00 - Protocolos/Handoff-Entre-Agentes|Handoff Entre Agentes]]
