@@ -21,6 +21,7 @@ Conhecimento importado do **Hermes** (memórias + skills).
 - [[Memórias/Traefik e Docker Swarm|Traefik e Docker Swarm]]
 - [[Memórias/SupoClip - Video Clipping IA|SupoClip - Video Clipping IA]]
 - [[Memórias/Git-Obsidian-Sync|Git Obsidian Sync]]
+- [[Memórias/Arquitetura-Cerebro-Obsidian|Arquitetura Cérebro Obsidian]]
 
 ## 🛠️ Skills
 
@@ -169,6 +170,7 @@ Conhecimento importado do **Hermes** (memórias + skills).
 - [[Memórias/Configurações Técnicas/REA-Reverse-Engineering|REA Reverse Engineering]]
 - [[Memórias/Configurações Técnicas/SupoClip-Integracao-ZapSender|SupoClip → ZapSender Video Clipping]]
 - [[Memórias/Git-Obsidian-Sync|Git Obsidian Sync]]
+- [[Memórias/Arquitetura-Cerebro-Obsidian|Arquitetura Cérebro Obsidian]]
 
 ## 📋 Protocolos
 - [[00 - Protocolos/Handoff-Entre-Agentes|Handoff Entre Agentes]]
