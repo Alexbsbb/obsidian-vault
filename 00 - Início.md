@@ -180,3 +180,4 @@ Conhecimento importado do **Hermes** (memórias + skills).
 - [[00 - Protocolos/Status-Projeto-Memoria-Compartilhada|Status do Projeto]]
 - [[00 - Protocolos/Comportamento-Automatico-Memoria|Comportamento Automático Memória]]
 - [[00 - Protocolos/Checklist-Hermes-Cerebro-Obsidian|Checklist Cérebro Obsidian]]
+- [[00 - Protocolos/Comando-Verificacao-Cerebro|Comando Verificação]]
