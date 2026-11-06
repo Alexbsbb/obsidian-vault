@@ -17,6 +17,7 @@ origem: Hermes-Agent
 - [[Configurações Técnicas/SupoClip - Video Clipping IA]]
 
 ## Projetos e Sistemas
+- [[Capafy AI - Marketplace e Agentes]]
 - [[ZapSender - Visão Geral do Projeto e Arquitetura]]
 - [[ZapSender - Diretiva Geral do Sistema]]
 - [[ZapSender - Politica de Privacidade e Conformidade LGPD]]
