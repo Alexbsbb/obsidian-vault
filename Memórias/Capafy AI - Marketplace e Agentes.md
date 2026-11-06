@@ -1,43 +1,80 @@
 ---
-tags: [memoria, capafy, ia, video, marketplace, agents]
+tags: [memoria, studio-ai, video, marketplace, agents, traefik, postgresql, docker-swarm]
 data: 2026-11-06
 ---
-# Capafy AI - Marketplace e Vitrine de Agentes de IA
+# Studio AI — Hub de Agentes & Criação de Vídeos
 
-Plataforma clone e ecossistema de marketplace de Agent Skills, com foco no agente principal **CloneCut (Vídeos curtos com IA e Seedance 2.0)**.
+Plataforma de criação e remix de vídeos curtos com inteligência artificial e marketplace de agentes especialistas (CloneCut, Motion Dancer Swap, Faceless Shorts, Commercial 3D).
 
-- **Localização do Projeto:** `C:\Users\PAULA\Documents\Craft Anything\capafy-ai`
-- **Comando de Execução:** `npm start` (porta `3000`)
-- **Repositório Local:** Inicializado com Git (branch `main`/`master`)
-
----
-
-## 🧭 Rotas Principais
-- `/`: Home / Apresentação do Agent CloneCut
-- `/pt/`: Marketplace geral com catálogo de skills e criadores
-- `/login`: Autenticação (Google, GitHub, e-mail)
-- `/pt/agent/5133292529`: Página detalhada do Agent CloneCut
-- `/pt/publisher/saya`: Perfil público do criador "saya"
-- `/pt/agent/5133292529/featured-examples/fitem_2074072014785499136`: Exemplo em destaque ("Replace the dancer in the video")
+- **Domínio Público:** `https://studio.riquest.com.br`
+- **Diretório Local:** `C:\Users\PAULA\Documents\Craft Anything\capafy-ai`
+- **Rede Traefik:** `rede_riquet3` (TLS com `letsencryptresolver`)
+- **Rede Banco de Dados:** `riquest`
+- **Banco de Dados:** PostgreSQL 14 (Stack Orion) via schema dedicado `studio_ai`
+- **Connection String Interna:** `postgresql://postgres:ceaab78bac269316f947ac2c0112e06d@postgres:5432/postgres?schema=studio_ai`
 
 ---
 
-## ⚙️ Arquitetura e Estrutura Atual
-- **Servidor:** [`server.js`](file:///c:/Users/PAULA/Documents/Craft%20Anything/capafy-ai/server.js) nativo Node.js com resolução de clean URLs, MIME types completos e suporte a fallback de agentes.
-- **Frontend:** HTML5, CSS moderno baseado em tokens (DM Sans, paleta `#ff6a2b`, `#18181b`, `#fafafa`), interatividade simulada no login com `localStorage`.
-- **Build:** [`app/build.js`](file:///c:/Users/PAULA/Documents/Craft%20Anything/capafy-ai/app/build.js) gerando distribuição em `app/dist/`.
+## 🧭 Rotas do Sistema
+- `/`: Studio de Criação interativo, seleção de agentes, geração com IA e player ao vivo
+- `/marketplace`: Catálogo completo de agentes com busca e filtros
+- `/login`: Autenticação e perfil do criador
+- `/api/health`: Status de saúde e verificação do PostgreSQL
+- `/api/agents`: Lista dinâmica de agentes cadastrados no banco
+- `/api/generations`: Histórico persistido de vídeos gerados
+- `/api/generate`: Endpoint de disparo de geração
 
 ---
 
-## 🎯 Próximos Passos Planejados (Roadmap)
-1. **Integração com APIs de IA para Geração de Vídeo:**
-   - Conectar provedores reais de geração/remix de vídeo (Seedance, Luma Dream Machine, Runway Gen-3, Kling, Haiper ou OpenAI).
-   - Pipeline de processamento assíncrono (envio do prompt/vídeo de referência → polling do status → entrega do vídeo renderizado).
-2. **Backend e Banco de Dados:**
-   - Criação de API REST / tRPC (Node.js/Express, Fastify ou Next.js).
-   - Banco de dados (Supabase / PostgreSQL / SQLite) para persistência de usuários, créditos, agentes e histórico de vídeos gerados.
-   - Autenticação real (JWT / OAuth2).
-3. **Refinamento de Design e UI:**
-   - Player interativo para visualização de prévias de vídeo antes/depois.
-   - Modal interativo de criação de briefing e upload de arquivos de referência.
-   - Dashboard do criador para publicação de novos agentes no marketplace.
+## 🐳 Stack Docker Swarm (Portainer)
+```yaml
+version: "3.7"
+
+services:
+  studio_ai:
+    image: alexbsbb/studio-ai:latest
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgresql://postgres:ceaab78bac269316f947ac2c0112e06d@postgres:5432/postgres?schema=studio_ai
+      - DB_SSL=false
+      - TZ=America/Sao_Paulo
+    networks:
+      - riquest
+      - rede_riquet3
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=rede_riquet3"
+        - "traefik.http.routers.studio-ai.rule=Host(`studio.riquest.com.br`)"
+        - "traefik.http.routers.studio-ai.entrypoints=websecure"
+        - "traefik.http.routers.studio-ai.tls=true"
+        - "traefik.http.routers.studio-ai.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.studio-ai.loadbalancer.server.port=3000"
+
+networks:
+  riquest:
+    external: true
+    name: riquest
+  rede_riquet3:
+    external: true
+    name: rede_riquet3
+```
+
+---
+
+## ⚙️ Isolamento de Dados no PostgreSQL
+- **Schema:** `studio_ai`
+- **Tabelas Criadas Automaticamente:**
+  - `studio_ai.agents` (catálogo e métricas de agentes)
+  - `studio_ai.generations` (prompts, estilo, proporção 9:16/16:9, status e link do vídeo MP4)
+  - `studio_ai.users` (contas e provedores)
