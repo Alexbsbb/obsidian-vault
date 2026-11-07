@@ -5,6 +5,6 @@ cd /d "%~dp0"
 if exist ".git\index.lock" exit /b 0
 
 git pull origin main --quiet
-git add .
+git add . --quiet
 git diff-index --quiet HEAD || git commit -m "Auto-sync %date% %time%" --quiet
 git push origin main --quiet
