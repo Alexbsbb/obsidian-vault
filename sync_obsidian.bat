@@ -1,7 +1,10 @@
 @echo off
-cd /d "%~dp0"
+cd /d "D:\cofreobsidiannotepaula"
+
+:: Se houver lock ativo no git, aborta para nao gerar conflito
+if exist ".git\index.lock" exit /b 0
+
+git pull origin main --quiet
 git add .
-for /f "tokens=1-3 delims=/" %%a in ('date /t') do set SYNC_DATE=%%a-%%b-%%c
-for %%f in ('time /t') do set SYNC_TIME=%%f
-git commit -m "Auto-sync %date% %time%" 2>nul
-git push origin main 2>nul
+git diff-index --quiet HEAD || git commit -m "Auto-sync %date% %time%" --quiet
+git push origin main --quiet
