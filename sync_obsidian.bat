@@ -1,5 +1,5 @@
 @echo off
-cd /d "D:\cofreobsidiannotepaula"
+cd /d "%~dp0"
 
 :: Se houver lock ativo no git, aborta para nao gerar conflito
 if exist ".git\index.lock" exit /b 0
