@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZapSenderAPI Manager</title>
+  <style>
+    :root {
+      --primaria: #FF4500;
+      --secundaria: #000000;
+      --destaque: #FFA500;
+      --fundo: #000000;
+      --card: #111111;
+      --texto: #ffffff;
+      --texto-muted: #888888;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+      color: var(--texto);
+      min-height: 100vh;
+    }
+    
+    .cabecalho {
+      background: var(--card);
+      padding: 20px 40px;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .titulo {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .subtitulo {
+      color: var(--texto-muted);
+      font-size: 14px;
+    }
+    
+    .conteudo-principal {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .barra-lateral {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+    
+    .barra-lateral h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--texto-muted);
+      margin-bottom: 15px;
+    }
+    
+    .item-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: var(--texto);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .item-nav:hover, .item-nav.ativo {
+      background: var(--primaria);
+    }
+    
+    .item-nav.ativo {
+      color: var(--texto);
+    }
+    
+    .area-conteudo {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    
+    .card-status {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    }
+    
+    .indicador-status {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulso 2s infinite;
+    }
+    
+    @keyframes pulso {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--primaria);
+    }
+    
+    .grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .item-stat {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    
+    .valor-stat {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--primaria);
+    }
+    
+    .rotulo-stat {
+      font-size: 12px;
+      color: var(--texto-muted);
+      margin-top: 5px;
+    }
+    
+    .botao {
+      display: inline-block;
+      background: var(--primaria);
+      color: var(--texto);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .botao:hover {
+      background: var(--destaque);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      text-align: left;
+      padding: 12px 15px;
+      border-bottom: 1px solid #333;
+    }
+    
+    th {
+      background: #1a1a1a;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--texto-muted);
+    }
+    
+    tr:hover {
+      background: rgba(255, 69, 0, 0.05);
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .badge-sucesso {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+    }
+    
+    .swatch-cor {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="titulo">
+      <span class="swatch-cor" style="background: var(--primaria);"></span>
+      ZapSenderAPI Manager
+    </div>
+    <div class="subtitulo">WhatsApp Plataforma de Disparos em Massa</div>
+  </header>
+  
+  <div class="conteudo-principal">
+    <aside class="barra-lateral">
+      <h3>Navegação</h3>
+      <a href="#" class="item-nav ativo">Dashboard</a>
+      <a href="#instancias" class="item-nav">Instâncias</a>
+      <a href="#mensagens" class="item-nav">Mensagens</a>
+      <a href="#bots" class="item-nav">Bots</a>
+      <a href="#webhooks" class="item-nav">Webhooks</a>
+      <a href="#configuracoes" class="item-nav">Configurações</a>
+    </aside>
+    
+    <main class="area-conteudo">
+      <div class="card-status">
+        <div class="indicador-status"></div>
+        <div>
+          <div style="font-size: 18px; font-weight: 600;">API Online</div>
+          <div style="color: var(--texto-muted); font-size: 14px;">Porta: 8080</div>
+        </div>
+      </div>
+      
+      <div class="grid-stats">
+        <div class="item-stat">
+          <div class="valor-stat">0</div>
+          <div class="rotulo-stat">Instâncias</div>
+        </div>
+        <div class="item-stat">
+          <div class="valor-stat">0</div>
+          <div class="rotulo-stat">Mensagens/dia</div>
+        </div>
+        <div class="item-stat">
+          <div class="valor-stat">0</div>
+          <div class="rotulo-stat">Bots Ativos</div>
+        </div>
+        <div class="item-stat">
+          <div class="valor-stat">0</div>
+          <div class="rotulo-stat">Erros</div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>🎨 Paleta de Cores</h3>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+              <span class="swatch-cor" style="background: #FF4500;"></span>
+              <span>Primária: #FF4500</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+              <span class="swatch-cor" style="background: #000000;"></span>
+              <span>Secundária: #000000</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+              <span class="swatch-cor" style="background: #FFA500;"></span>
+              <span>Destaque: #FFA500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>📋 Endpoints da API</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Endpoint</th>
+              <th>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-sucesso">GET</span></td>
+              <td>/health</td>
+              <td>Verificar saúde da API</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-sucesso">GET</span></td>
+              <td>/status</td>
+              <td>Status detalhado do sistema</td>
+            </tr>
+            <tr>
+              <td><span class="badge">POST</span></td>
+              <td>/api/v1/mensagens</td>
+              <td>Enviar mensagem</td>
+            </tr>
+            <tr>
+              <td><span class="badge">POST</span></td>
+              <td>/api/v1/mensagens/lote</td>
+              <td>Enviar em lote</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
