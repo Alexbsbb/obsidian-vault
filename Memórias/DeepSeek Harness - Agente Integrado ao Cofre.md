@@ -17,7 +17,7 @@ O **DeepSeek Harness (DSH)** passa a operar como mais um agente da memória cent
 - **Chave SSH:** `~/.ssh/hermes-ct` (autentica no GitHub como `Alexbsbb`)
 - **Workspace de sessão:** `C:\Users\PAULA\Documents\deepseek-harness\default-workspace`
 
-> Não confundir com `C:\Users\PAULA\Documents\Obsidian Vault`: é uma cópia antiga com remote apontando para `alexbuzatto/zapsenderapi` — **não usar**.
+> A cópia antiga `C:\Users\PAULA\Documents\Obsidian Vault` (remote `alexbuzatto/zapsenderapi`) foi **removida em 2026-11-10**. Backup do histórico Git em `default-workspace\backup-documents-obsidian-vault-2026-11-10.bundle`.
 
 ## Capacidades
 - Leitura/escrita de arquivos e navegação em diretórios
