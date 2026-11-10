@@ -24,3 +24,6 @@ origem: Hermes-Agent
 
 ## Preferências
 - [[Preferências do Usuário]]
+
+## Agentes
+- [[DeepSeek Harness - Agente Integrado ao Cofre]]
