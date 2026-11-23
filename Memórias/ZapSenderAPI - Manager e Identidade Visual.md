@@ -75,4 +75,3 @@ node http-server.js
 - **Health:** `http://localhost:8081/health`
 - **Cores:** `http://localhost:8081/colors`
 - **Chave de Teste Padrão:** `test-api-key-12345`
-
